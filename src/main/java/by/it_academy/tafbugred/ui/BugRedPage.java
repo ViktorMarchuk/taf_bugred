@@ -4,8 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-
-public class BugRedPage extends BasePage{
+public class BugRedPage extends WebDriverSingleton{
     private WebDriver driver;
     public final String URL = "http://users.bugred.ru/";
     public final String NAME = "Имя";
@@ -18,13 +17,13 @@ public class BugRedPage extends BasePage{
     public final String PASSWORD_FIELD_ENTER = "Пароль";
     public final String AUTHORIZATION_FIELD_ENTER = "Авторизоваться";
     public final String NAME_ENTER_FIELD_ENTER = "Вход";
-    public final String NAME_OF_TOP_FIELD_ENTER="С помощью формы ниже,вы сможете авторизоваться на нашем ресурсе";
+    public final String NAME_OF_TOP_FIELD_ENTER = "С помощью формы ниже,вы сможете авторизоваться на нашем ресурсе";
 
     private String xPathButtonEnterFieldRegistration = "//a[@href='/user/login/index.html']";
     private String xPathNameFieldRegistration = "//form[@action='/user/register/index.html']/table/tbody/tr[1]/td[1]";
     private String xPathEmailFieldRegistration = "//form[@action='/user/register/index.html']/table/tbody/tr[2]/td[1]";
     private String xPathPasswordFieldRegistration = "//form[@action='/user/register/index.html']/table/tbody/tr[3]/td[1]";
-    private String xPathNameButtonRegisterFieldRegistration = "//input[@name=\"act_register_now\"]";//"//form[@action='/user/register/index.html']/table/tbody/tr[4]/td[2]/input";
+    private String xPathNameButtonRegisterFieldRegistration = "//form[@action='/user/register/index.html']/table/tbody/tr[4]/td[2]/input";
     private String xPathRegister = "//div[@class='col-md-6'][2]/h2";
 
     private String xPathEmailFieldEnter = "//div[@class='col-md-6'][1]/form/table/tbody/tr[1]/td[1]";
@@ -69,7 +68,7 @@ public class BugRedPage extends BasePage{
     public String getTextNameButtonRegister(){
         By nameButtonRegister = new By.ByXPath(xPathNameButtonRegisterFieldRegistration);
         WebElement nameButtonRegisterElement = driver.findElement(nameButtonRegister);
-        return nameButtonRegisterElement.getText();
+        return nameButtonRegisterElement.getAccessibleName();
     }
 
     public String getTextRegister(){
@@ -93,7 +92,7 @@ public class BugRedPage extends BasePage{
     public String getNameButtonAuthorisationFieldEnter(){
         By nameButtonAuthorisationFieldEnter = new By.ByXPath(xPathNameButtonAuthorisationFieldEnter);
         WebElement nameButtonAuthorisationFieldEnterElement = driver.findElement(nameButtonAuthorisationFieldEnter);
-        return nameButtonAuthorisationFieldEnterElement.getText();
+        return nameButtonAuthorisationFieldEnterElement.getAttribute("value");
     }
 
     public String getTextNameEnter(){

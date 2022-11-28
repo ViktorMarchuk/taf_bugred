@@ -3,6 +3,7 @@ package by.it_academy.tafbugred.api;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
@@ -10,8 +11,8 @@ public class ApiTest{
     @Test
     void testRegisterUser(){
         String endPoint = "http://users.bugred.ru/tasks/rest/doregister";
-        String name = "domaer";
-        String email = "doma23.23@gmail.com";
+        String name = "dom";
+        String email = "doma45@gmail.com";
         String password = "23344";
         String requestBody = String.format("{\"name\":\"%s\",\"email\":\"%s\",\"password\":\"%s\"}", name, email, password);
         given()
@@ -42,7 +43,7 @@ public class ApiTest{
     @Test
     void testGetUserInfo(){
         String endPoint = "http://users.bugred.ru/tasks/rest/getuser";
-        String email = "kat.23@gmail.com";
+        String email = "doma45@gmail.com";
         String requestBody = String.format("{\"email\":\"%s\"}", email);
         given()
                 .header("Content-type", "application/json")
@@ -67,7 +68,7 @@ public class ApiTest{
                 .when()
                 .get(endPoint)
                 .then().statusCode(200)
-                .body("email", is(email))
+                .body("email", is("Пользователь не найден " + email))
                 .log().all();
     }
 
